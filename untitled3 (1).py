@@ -31,10 +31,10 @@ data = {
 df = pd.DataFrame(data)
 df.to_csv('IMDb.csv', index=False)
 
-print("✅ Sample IMDb.csv created successfully!")
+print(" Sample IMDb.csv created successfully!")
 df.head()
 
-# 📦 Import necessary libraries
+#  Import necessary libraries
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
@@ -42,33 +42,33 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import classification_report, confusion_matrix
 
-# 📥 Load the sample dataset
+#  Load the sample dataset
 df = pd.read_csv("IMDb.csv")
 
-# 🧹 Clean the data
+#  Clean the data
 df.dropna(inplace=True)
 
-# ✏️ Define features and target
+#  Define features and target
 X = df['Plot']
 y = df['Genre']
 
-# 🔠 TF-IDF Vectorization
+# TF-IDF Vectorization
 vectorizer = TfidfVectorizer(stop_words='english', max_features=500)
 X_tfidf = vectorizer.fit_transform(X)
 
-# 🔀 Train-test split
+#  Train-test split
 X_train, X_test, y_train, y_test = train_test_split(X_tfidf, y, test_size=0.2, random_state=42)
 
-# 🤖 Train the model
+#  Train the model
 model = MultinomialNB()
 model.fit(X_train, y_train)
 
-# 📈 Predict and evaluate
+#  Predict and evaluate
 y_pred = model.predict(X_test)
-print("\n✅ Classification Report:\n")
+print("\n Classification Report:\n")
 print(classification_report(y_test, y_pred))
 
-# 📊 Confusion Matrix
+#  Confusion Matrix
 cm = confusion_matrix(y_test, y_pred)
 plt.figure(figsize=(8,5))
 sns.heatmap(cm, annot=True, cmap='Blues', fmt='d', xticklabels=model.classes_, yticklabels=model.classes_)
