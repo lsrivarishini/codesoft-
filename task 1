@@ -1,0 +1,26 @@
+import pandas as pd
+
+# Create a sample dataset
+data = {
+    'Plot': [
+        'A young wizard attends a school of witchcraft.',
+        'A space crew tries to defeat a dark lord.',
+        'A romantic story between two people.',
+        'A detective solves mysteries in London.',
+        'Aliens attack Earth and humans fight back.'
+    ],
+    'Genre': [
+        'Fantasy',
+        'Sci-Fi',
+        'Romance',
+        'Mystery',
+        'Action'
+    ]
+}
+
+# Save as CSV (like real dataset)
+df = pd.DataFrame(data)
+df.to_csv('IMDb.csv', index=False)
+
+print("✅ Sample IMDb.csv created successfully!")
+df.head()
